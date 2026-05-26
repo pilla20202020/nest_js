@@ -1,18 +1,32 @@
 import { Injectable } from '@nestjs/common';
+import * as bcrypt from 'bcrypt';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { SafeUser } from './users.interface';
+
+const SAFE_USER_SELECT = {
+  id: true,
+  name: true,
+  email: true,
+  createdAt: true,
+  updatedAt: true,
+} as const;
 
 @Injectable()
 export class UsersService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) {}
 
-  create(createUserDto: CreateUserDto) {
+  async create(createUserDto: CreateUserDto): Promise<SafeUser> {
+    const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
     return this.prisma.user.create({
-      data: createUserDto,
+      data: { ...createUserDto, password: hashedPassword },
+      select: SAFE_USER_SELECT,
     });
   }
 
-  findAll() {
-    return this.prisma.user.findMany();
+  async findAll(): Promise<SafeUser[]> {
+    return this.prisma.user.findMany({
+      select: SAFE_USER_SELECT,
+    });
   }
 }
