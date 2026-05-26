@@ -63,12 +63,12 @@ model User {
 
 - Node.js 18+
 - PostgreSQL database
-- Yarn
+- npm
 
 ### Installation
 
 ```bash
-yarn install
+npm install
 ```
 
 ### Environment Setup
@@ -94,41 +94,41 @@ npx prisma studio
 
 ```bash
 # Development
-yarn start
+npm start
 
 # Watch mode (auto-reload)
-yarn start:dev
+npm run start:dev
 
 # Production
-yarn start:prod
+npm run start:prod
 ```
 
 The server starts on **http://localhost:3000**.
 
 ## Scripts
 
-| Command              | Description                        |
-|----------------------|------------------------------------|
-| `yarn build`         | Compile TypeScript to `dist/`      |
-| `yarn start:dev`     | Start with file watching           |
-| `yarn start:debug`   | Start with debugger attached       |
-| `yarn lint`          | Lint and auto-fix source files     |
-| `yarn format`        | Format source files with Prettier  |
+| Command                  | Description                        |
+|--------------------------+------------------------------------|
+| `npm run build`          | Compile TypeScript to `dist/`      |
+| `npm run start:dev`      | Start with file watching           |
+| `npm run start:debug`    | Start with debugger attached       |
+| `npm run lint`           | Lint and auto-fix source files     |
+| `npm run format`         | Format source files with Prettier  |
 
 ## Testing
 
 ```bash
 # Unit tests
-yarn test
+npm test
 
 # Watch mode
-yarn test:watch
+npm run test:watch
 
 # e2e tests
-yarn test:e2e
+npm run test:e2e
 
 # Coverage report
-yarn test:cov
+npm run test:cov
 ```
 
 ## License
